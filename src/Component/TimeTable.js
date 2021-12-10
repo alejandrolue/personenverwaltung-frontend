@@ -9,7 +9,7 @@ import axios from 'axios'
 //onClick={() => setEdit(true)}
 //onClick={handleDelete}
 
-const EditIconButton = ({ props }) => {
+const EditIconButton = (props) => {
     const [edit, setEdit] = useState(false)
     const handleEditClick = () => {
         setEdit(!edit)
@@ -19,7 +19,7 @@ const EditIconButton = ({ props }) => {
     return (
         <FormControlLabel
             onSubmit={
-            axios.delete('http://localhost:8080/user/' + id, {
+            axios.delete('http://localhost:8080/user/' + props.id, {
         }).then((res) => {
             console.log(res)
         })}
@@ -39,6 +39,7 @@ const EditIconButton = ({ props }) => {
 
 const EditDeleteButton = (props) => {
     const handleEditClick = () => {
+        console.log(props.id)
     };
     return (
         <FormControlLabel
@@ -80,8 +81,8 @@ export default function TimeTable() {
                         className="d-flex justify-content-between align-items-center"
                         style={{cursor: "pointer"}}
                     >
-                        <EditDeleteButton id={id} index={params.row.id}/>
-                        <EditIconButton index={params.row.id}/>
+                        <EditDeleteButton id={id}/>
+                        <EditIconButton/>
                     </div>
                 );
             }
